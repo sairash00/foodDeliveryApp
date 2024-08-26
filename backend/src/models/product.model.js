@@ -15,7 +15,7 @@ const productSchema = new mongoose.Schema(
       ],
     category: {
       type: String,
-      enum: ["Sweets", "Drinks", "Food"],
+      enum: ["Dessert", "Drinks", "Food"],
       required: true,
     },
     // description: {

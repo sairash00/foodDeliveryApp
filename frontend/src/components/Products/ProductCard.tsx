@@ -63,7 +63,7 @@ const ProductCard: React.FC<Props> = ({ id, name, price, images }) => {
   };
 
   return (
-    <div className="px-2 max-xs:w-full max-sm:justify-between max-xsm:w-full hover:shadow-lg shadow-[#8080804b] hover:bg-[white] transition-all py-2 flex flex-col gap-4 min-w-[16vw] h-fit border border-[#fc4e0330] shadow-md rounded-md overflow-hidden">
+    <div className="px-2 max-xs:w-full max-sm:justify-between max-xsm:w-full hover:shadow-lg shadow-[#8080804b] hover:bg-[white] transition-all py-2 flex flex-col gap-4 min-w-[18vw] h-fit border border-[#fc4e0330] shadow-md rounded-md overflow-hidden">
       <img
         src={images?.[0]}
         loading="lazy"
