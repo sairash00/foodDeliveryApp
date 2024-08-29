@@ -84,7 +84,6 @@ const Search = ({ handleShow }: Props) => {
           >
             Products
           </Link>
-          {isAuthenticated ? (
             <Link
               onClick={handleShow}
               to={"/dashboard/orders"}
@@ -92,10 +91,7 @@ const Search = ({ handleShow }: Props) => {
             >
               Orders
             </Link>
-          ) : (
-            <></>
-          )}
-          {isAuthenticated ? (
+
             <Link
               onClick={handleShow}
               to={"/dashboard/cart"}
@@ -103,9 +99,7 @@ const Search = ({ handleShow }: Props) => {
             >
               Cart
             </Link>
-          ) : (
-            <></>
-          )}
+         
           {isAdmin ? (
             <Link
               onClick={handleShow}
