@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaImage } from 'react-icons/fa';
 
@@ -26,7 +26,7 @@ const Add = () => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
-    const { name, value, files } = e.target;
+    const { name, value, files } = e.target as HTMLInputElement & HTMLSelectElement & { files: FileList | null };
 
     if (name !== "image") {
       setData({

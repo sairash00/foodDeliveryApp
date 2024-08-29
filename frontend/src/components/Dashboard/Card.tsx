@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import ProductDetail from './ProductDetail'
 import { useState } from 'react';
 import axios, { AxiosResponse } from 'axios';

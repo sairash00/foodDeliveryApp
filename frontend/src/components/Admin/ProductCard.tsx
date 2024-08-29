@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { IoAddOutline } from 'react-icons/io5';
 
 interface Products{
   _id: string,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 import axios, { AxiosResponse } from 'axios';
 import OrderForm from './NewAddressForm';
@@ -107,18 +107,22 @@ const PlaceOrderPage = ({ setShow }: Props) => {
   }, [products]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
-    const { name, type, checked, value } = e.target;
-
-    if (type === 'checkbox') {
-      if (name === 'pickUp') {
-        setData({ ...data, pickUp: checked });
-      } else if (name === 'newAddress') {
-        setNewAddress(checked);
-        if (checked && !data.address) {
-          setData({ ...data, address: { city: '', state: '', country: '' } });
+    // Check if the event target is an input element
+    if (e.target instanceof HTMLInputElement) {
+      const { name, type, checked} = e.target;
+  
+      if (type === 'checkbox') {
+        if (name === 'pickUp') {
+          setData({ ...data, pickUp: checked });
+        } else if (name === 'newAddress') {
+          setNewAddress(checked);
+          if (checked && !data.address) {
+            setData({ ...data, address: { city: '', state: '', country: '' } });
+          }
         }
       }
     } else {
+      const { name, value } = e.target;
       if (newAddress && data.address) {
         setData({
           ...data,
@@ -130,6 +134,7 @@ const PlaceOrderPage = ({ setShow }: Props) => {
       }
     }
   };
+  
 
   const dataValidations = (data: Data, newAddress: boolean): string | Data => {
     if (!data.items || data.items.length === 0) {

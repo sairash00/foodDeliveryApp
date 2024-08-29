@@ -1,4 +1,4 @@
-import { IoCartOutline, IoSearch } from "react-icons/io5";
+import { IoCartOutline} from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useNavigate } from "react-router-dom";
 import Search from "./Search";
@@ -18,7 +18,10 @@ const Navbar = () => {
         setIsAuthenticated(authDetails.isAuthenticated)
 
       } catch (error) {
-        setIsAuthenticated(false);  
+        setIsAuthenticated(false);
+        if(error)  {
+          setIsAuthenticated(false)
+        }
       }
     };
 

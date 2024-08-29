@@ -22,7 +22,6 @@ const ProductCard: React.FC<Props> = ({ id, name, price, images }) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [disable, setDisable] = useState<boolean>(false);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const navigate = useNavigate()
 
   const handleIncrement = () => {
@@ -41,7 +40,6 @@ const ProductCard: React.FC<Props> = ({ id, name, price, images }) => {
   const addToCart = async (): Promise<void> => {
 
     const authStatus = await CheckLoggedIn({ navigate });
-    setIsAuthenticated(authStatus.isAuthenticated);
     if(!authStatus.isAuthenticated){
       return
     }

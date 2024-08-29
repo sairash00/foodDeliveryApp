@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 import axios, { AxiosResponse } from 'axios';
 

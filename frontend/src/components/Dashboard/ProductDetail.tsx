@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
 import axios, { AxiosResponse } from 'axios';

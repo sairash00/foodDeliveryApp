@@ -1,5 +1,3 @@
-import React from 'react'
-import { AiOutlineDelete } from 'react-icons/ai'
 
 interface Props {
     image:string,

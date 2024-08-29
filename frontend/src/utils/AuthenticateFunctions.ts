@@ -43,7 +43,7 @@ export const CheckLoggedIn = async ({ admin = false, navigate }: Props): Promise
     return { isAuthenticated: true, isAdmin: response.data.user.admin };
     
   } catch (error) {
-    if (navigate) {
+    if (error && navigate) {
       toast.error("Please Login First");
       navigate('/login');
     }

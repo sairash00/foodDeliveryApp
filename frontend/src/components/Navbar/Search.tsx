@@ -28,8 +28,10 @@ const Search = ({ handleShow }: Props) => {
         setIsAuthenticated(authDetails.isAuthenticated);
         setIsAdmin(authDetails.isAdmin);
       } catch (error) {
-        setIsAuthenticated(false);
-        setIsAdmin(false);
+        if(error){
+          setIsAuthenticated(false);
+          setIsAdmin(false);
+        }
       }
     };
 

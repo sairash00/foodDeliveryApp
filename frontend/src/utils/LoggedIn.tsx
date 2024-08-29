@@ -1,7 +1,7 @@
 // src/hocs/withGuest.tsx
 
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 
 interface WithGuestProps {
@@ -16,7 +16,7 @@ interface Response {
 const LoggedIn = ({ component: Component }: WithGuestProps) => {
 
   const GuestComponent: React.FC = () => {
-    const navigate = useNavigate();
+    const navigate:NavigateFunction = useNavigate();
 
     useEffect(() => {
       const checkIfLoggedIn = async ():Promise<void> => {
@@ -28,12 +28,13 @@ const LoggedIn = ({ component: Component }: WithGuestProps) => {
           }
 
         } catch (error) {
+          if(error){
             return
         }
       };
 
       checkIfLoggedIn();
-    }, [navigate]);
+    },[]);
 
     return <Component />;
   };
