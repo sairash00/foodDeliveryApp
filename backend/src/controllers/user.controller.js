@@ -37,6 +37,8 @@ export const register = async (req,res) => {
         const accessToken = await generateToken(user.email, user._id)
         const options = {
             httpOnly: true,
+            secure: true,
+            sameSite: "None",
             maxAge: 24 * 60 * 60 * 1000
         }
 
@@ -84,6 +86,8 @@ export const login = async (req,res) => {
         const accessToken = await generateToken(user.email, user._id)
         const options = {
             httpOnly: true,
+            secure: true,
+            sameSite: "None",
             maxAge: 24 * 60 * 60 * 1000
         }
 
