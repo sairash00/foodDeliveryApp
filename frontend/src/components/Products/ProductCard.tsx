@@ -1,8 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import React, { useState } from "react";
+import { CheckLoggedIn } from "../../utils/AuthenticateFunctions";
 import { IoAddOutline } from "react-icons/io5";
 import { LuMinus } from "react-icons/lu";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   id: string;
@@ -20,6 +22,8 @@ const ProductCard: React.FC<Props> = ({ id, name, price, images }) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [disable, setDisable] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const navigate = useNavigate()
 
   const handleIncrement = () => {
     if (quantity < 10) {
@@ -33,7 +37,15 @@ const ProductCard: React.FC<Props> = ({ id, name, price, images }) => {
     }
   };
 
+  
   const addToCart = async (): Promise<void> => {
+
+    const authStatus = await CheckLoggedIn({ navigate });
+    setIsAuthenticated(authStatus.isAuthenticated);
+    if(!authStatus.isAuthenticated){
+      return
+    }
+
     setDisable(true);
     setLoading(true);
     try {
@@ -63,12 +75,12 @@ const ProductCard: React.FC<Props> = ({ id, name, price, images }) => {
   };
 
   return (
-    <div className="px-2 max-xs:w-full max-sm:justify-between max-xsm:w-full hover:shadow-lg shadow-[#8080804b] hover:bg-[white] transition-all py-2 flex flex-col gap-4 min-w-[18vw] h-fit border border-[#fc4e0330] shadow-md rounded-md overflow-hidden">
+    <div className="px-2  hover:shadow-lg shadow-[#8080804b] hover:bg-[white] transition-all py-2 flex flex-col gap-4 md:max-w-[30vw] sm:max-w-[40vw] lg:max-w-[22vw] h-fit border border-[#fc4e0330] shadow-md rounded-md overflow-hidden">
       <img
         src={images?.[0]}
         loading="lazy"
         alt={name}
-        className="shadow-md shadow-[#8080804b] object-cover object-center w-full max-xs:h-[50vh] h-[30vh] rounded-lg"
+        className="shadow-md shadow-[#8080804b] object-cover object-center w-full sm:h-[45vh] rounded-lg"
       />
       <div className="flex justify-between items-center mt-2">
         <div>

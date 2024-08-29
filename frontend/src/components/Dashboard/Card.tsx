@@ -89,7 +89,7 @@ const Card= ({order}:Props) => {
   }
 
   const PerformTask = ():void => {
-    if(cancelled || order.status === "cancelled"){
+    if(cancelled || order.status === "cancelled" || order.status === "delivered" ){
       DeleteOrder()
     }else{
       CancelOrder()
@@ -134,7 +134,7 @@ const Card= ({order}:Props) => {
               <li className='text-sm font-semibold' >Country: {order.deliveryAddress?.country} </li> </ul> : <p className='text-sm font-semibold' >Registered Address</p> }
             </details>
 
-            <button onClick={PerformTask} disabled ={loading} className='px-2 py-1 w-full bg-[#a93503] text-white rounded-md font-semibold hover:bg-[#fc4e03] transition ' > {loading ? "Processing" : cancelled ? "Delete" : order.status === "cancelled" ? "Delete" : 'Cancel' } </button>
+            <button onClick={PerformTask} disabled ={loading} className='px-2 py-1 w-full bg-[#a93503] text-white rounded-md font-semibold hover:bg-[#fc4e03] transition ' > {loading ? "Processing" : cancelled ? "Delete" : order.status === "cancelled" || order.status === "delivered" ? "Delete" : 'Cancel' } </button>
         </div>
     </div>
   )

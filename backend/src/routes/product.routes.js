@@ -8,11 +8,11 @@ const router = express.Router();
 
 router.route("/add").post(authenticate,upload.single("image"), addProduct);
 router.route("/delete").post (authenticate, deleteProduct)
-router.route("/getAll").get(authenticate, getProducts)
+router.route("/getAll").get(getProducts)
 router.route("/get/:id").get(authenticate, getOneProduct)
 router.route("/addToCart").post(authenticate, addToCart )
 router.route("/removeFromCart").post(authenticate, removeFromCart)
 router.route("/getCartDetails").get(authenticate, getCartDetails)
-router.route("/search").get(authenticate, search)
+router.route("/search").get(search)
 
 export default router;

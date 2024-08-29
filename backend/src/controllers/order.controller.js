@@ -107,7 +107,7 @@ export const deleteOrder = async (req,res) => {
 
 export const status = async(req,res) => {
     try {
-        const id = req.params.id
+        const id = req.body.id
         if(!id || !isValidObjectId(id)) return res.status(403).json({
             success: false,
             message: "Invalid order id"
@@ -175,10 +175,17 @@ export const cancel = async (req,res) => {
 
 export const getAll = async (req,res) => {
     try {
-        const orders = await Order.find()
+        const orders = await Order.find().populate({
+            path: "by",
+            select: "name"
+        }).populate({
+            path: "items.item",
+            model: "Product",
+            select:"name price images"
+        })
         if(!orders) return res.status(404).json({
             success: false,
-            message: "No orders found"
+            message: "No orders found"  
         })
 
         res.status(200).json({

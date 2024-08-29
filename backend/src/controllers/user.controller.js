@@ -186,7 +186,7 @@ export const isLoggedIn = async (req,res) => {
             message: "Invalid token"
         })
 
-        const user = await User.findById(decodedToken.id).select("email")
+        const user = await User.findById(decodedToken.id).select("admin")
         if(!user) return res.status(404).json({
             success: false,
             message: "User not found"

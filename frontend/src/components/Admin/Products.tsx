@@ -48,18 +48,24 @@ const Product = () => {
   }, []);
 
   return (
-    <div className="justify-center py-8 flex gap-6 max-sm:gap-5 w-[100%] flex-wrap">
+    <div className="px-5 min-h-[80vh] max-sm:px-2 py-5">
       {loading ? (
-        <div className="text-center w-10 h-10 border-b-4 border-r-4 animate-spin rounded-full border-[#fc4e03] "></div>
+        <div className="flex items-center justify-center min-h-[90vh]">
+          <div className="w-10 h-10 animate-spin rounded-full border-b-4 border-r-4 border-[#fc4e03]"></div>
+        </div>
       ) : error ? (
-        <div className="text-center text-red-500">{error}</div>
-      ) : products.length === 0 ? (
-        <div className="text-center">No Products Found</div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="flex items-center justify-center min-h-[90vh]">
+          <div className="text-red-500 text-xl">{error}</div>
+        </div>
+      ) : products.length > 0 ? (
+        <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2">
           {products.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center min-h-[90vh]">
+          <div className="text-2xl font-semibold">No products available</div>
         </div>
       )}
     </div>

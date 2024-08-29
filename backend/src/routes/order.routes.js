@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.route("/add").post(authenticate,add) 
 router.route("/delete").post(authenticate,deleteOrder)
-router.route("/updateStatus/:id").post(authenticate,status)
+router.route("/updateStatus").post(authenticate,status)
 router.route("/cancel").post(authenticate,cancel)
 router.route("/getAll").get(authenticate,getAll)
 router.route("/getUserOrder").get(authenticate,getUserOrder)
