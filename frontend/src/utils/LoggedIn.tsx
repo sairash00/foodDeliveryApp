@@ -32,7 +32,7 @@ const LoggedIn = ({ component: Component }: WithGuestProps) => {
             return
         }
       };
-
+    }
       checkIfLoggedIn();
     },[]);
 
