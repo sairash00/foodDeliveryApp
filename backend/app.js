@@ -12,7 +12,7 @@ import cors from 'cors'
 
 const app = express()
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://food-delivery-app-frontend-teal.vercel.app",
     credentials: true,
 }))
 
