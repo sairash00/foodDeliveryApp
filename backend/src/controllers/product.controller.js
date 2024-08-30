@@ -2,57 +2,63 @@ import {uploadOnCloudinary, removeFromCloudinary} from "../utils/cloudinary.js"
 import Product from '../models/product.model.js'
 import User from '../models/user.model.js'
 import { isValidObjectId } from "mongoose"
-import { verifyToken } from "../utils/jwt.js"
+
+import { uploadOnCloudinary, removeFromCloudinary } from '../utils/cloudinary.js';
+import Product from '../models/Product.js';
 
 export const addProduct = async (req, res) => {
     try {
-        const data = req.body
-        const file = req.file
-        if(!data || data.name === "" || !data.price || data.description === "" || data.category === "" || !file ) return res.status(403).json({
-            success: false,
-            message: "All fields are required"
-        })
-        
-        const result = await uploadOnCloudinary(file.path)
+        const { name, price, description, category } = req.body;
+        const file = req.file;
 
-        if(!result) return res.status(500).json({
-            success:false,
-            message: "Failed to upload image"
-        })
-
-        const product = {
-            name: data.name,
-            price: data.price,
-            description: data.description,
-            category: data.category,
-        }
-
-        const newProduct = await Product.create(product)
-        
-        if(!product){
-            await removeFromCloudinary(result.secure_url)
-            return res.status(403).json({
+        if (!name || !price || !description || !category || !file) {
+            return res.status(400).json({
                 success: false,
-                message: "Failed to create product"
-            })
+                message: "All fields are required",
+            });
         }
 
-        newProduct.images.push(result.secure_url)
-        newProduct.save()
+        const result = await uploadOnCloudinary(file.buffer, `${Date.now()}-${file.originalname.trim()}`);
 
-       res.status(200).json({
-        success: true,
-        message: "Product created successfully",
-        product: newProduct
-       })
-        
+        if (!result) {
+            return res.status(500).json({
+                success: false,
+                message: "Failed to upload image",
+            });
+        }
+
+        // Create new product
+        const newProduct = await Product.create({
+            name,
+            price,
+            description,
+            category,
+            images: [result.secure_url], 
+        });
+
+        if (!newProduct) {
+            await removeFromCloudinary(result.secure_url);
+            return res.status(500).json({
+                success: false,
+                message: "Failed to create product",
+            });
+        }
+
+        return res.status(201).json({
+            success: true,
+            message: "Product created successfully",
+            product: newProduct,
+        });
+
     } catch (error) {
+        console.error('Error adding product:', error);
         return res.status(500).json({
             success: false,
-            message: error.message
-        })
+            message: "Internal Server Error",
+            error: error.message,
+        });
     }
-}
+};
 
 export const deleteProduct = async (req,res) => {
     try {
