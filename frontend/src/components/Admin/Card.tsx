@@ -84,7 +84,6 @@ const Card = ({details}:Props) => {
     setLoading(true)
     try {
       const response:AxiosResponse<Response> = await axios.post(import.meta.env.VITE_UPDATE_ORDER_STATUS,status) 
-      console.log(response.data)
       if(response.status === 200 || response.data.success){
         toast.success("Status changed successfully");
         setLoading(false)
