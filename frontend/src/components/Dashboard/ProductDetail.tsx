@@ -11,7 +11,7 @@ interface Props {
   cart: boolean;
   id: string;
 }
-
+ 
 interface Response {
   status: number;
   success: boolean;

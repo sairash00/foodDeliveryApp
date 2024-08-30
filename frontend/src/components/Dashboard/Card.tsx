@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import ProductDetail from './ProductDetail'
+import ProductDetail from './ProductDetail.tsx'
 import { useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import toast from 'react-hot-toast';
@@ -112,7 +112,8 @@ const Card= ({order}:Props) => {
             {
               order?.items?.map((item) => {
                return <ProductDetail
-                  key={item._id} 
+                  key={item._id}
+                  id={item._id}
                   image = {item.item?.images?.[0]}
                   name = {item.item?.name}
                   price = {item.item?.price}
