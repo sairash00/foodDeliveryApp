@@ -96,6 +96,7 @@ const Add = () => {
         });
       }
     } catch (error) {
+      console.log(error)
       setData({
         name: "",
         price: "",
@@ -111,6 +112,7 @@ const Add = () => {
       setLoading(false);
     }
   };
+
 
 
   return (
