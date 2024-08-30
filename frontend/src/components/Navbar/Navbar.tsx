@@ -1,6 +1,6 @@
 import { IoCartOutline} from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Search from "./Search";
 import { useState, useEffect } from "react";
 import { CheckLoggedIn } from "../../utils/AuthenticateFunctions";
