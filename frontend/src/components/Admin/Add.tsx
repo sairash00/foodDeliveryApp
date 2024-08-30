@@ -112,7 +112,6 @@ const Add = () => {
     }
   };
 
-  console.log(data)
 
   return (
     <div className='w-full flex items-center justify-center py-10 px-[1rem]'>
