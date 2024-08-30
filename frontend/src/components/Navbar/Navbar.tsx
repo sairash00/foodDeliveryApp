@@ -9,7 +9,6 @@ import { CheckLoggedIn } from "../../utils/AuthenticateFunctions";
 const Navbar = () => {
 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -26,7 +25,7 @@ const Navbar = () => {
     };
 
     checkAuth();
-  }, [navigate]);
+  }, []);
 
     const [show, setShow] = useState<boolean>(false)
 
