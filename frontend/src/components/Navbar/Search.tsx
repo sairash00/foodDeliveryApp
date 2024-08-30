@@ -102,6 +102,17 @@ const Search = ({ handleShow }: Props) => {
               Cart
             </Link>
          
+          {isAuthenticated ? (
+            <div
+            onClick={logout}
+              className=" text-[#fff]  text-2xl w-full flex justify-center hover:bg-[#FC4E03] border-b border-[#ffffff50] hover:text-[#fff] py-4 px-4  "
+              >
+              {loading ? "Logging Out" : "Logout"}
+            </div>
+          ) : (
+            <></>
+          )}
+          
           {isAdmin ? (
             <Link
               onClick={handleShow}
@@ -110,16 +121,6 @@ const Search = ({ handleShow }: Props) => {
             >
               Admin
             </Link>
-          ) : (
-            <></>
-          )}
-          {isAuthenticated ? (
-            <div
-              onClick={logout}
-              className=" text-[#fff]  text-2xl w-full flex justify-center hover:bg-[#FC4E03] border-b border-[#ffffff50] hover:text-[#fff] py-4 px-4  "
-            >
-              {loading ? "Logging Out" : "Logout"}
-            </div>
           ) : (
             <></>
           )}
