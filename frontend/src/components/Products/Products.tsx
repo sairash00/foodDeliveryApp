@@ -1,7 +1,9 @@
-import ProductCard from "./ProductCard";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import { getProducts } from "../../utils/getProductApi";
 import Skeleton from "../../DaisyComponents/Skeleton";
+
+const ProductCard = lazy(() => import("./ProductCard") )
+
 interface Product {
   _id: string;
   name: string;
@@ -45,13 +47,14 @@ const Products = () => {
       ) : products.length > 0 ? (
         <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2">
           {products.map((product) => (
-            <ProductCard
-              key={product._id}
-              id={product._id}
-              name={product.name}
-              price={product.price}
-              images={product.images}
-            />
+            <Suspense key={product._id} fallback={<Skeleton/>}>
+              <ProductCard
+                id={product._id}
+                name={product.name}
+                price={product.price}
+                images={product.images}
+             />
+            </Suspense>
           ))}
         </div>
       ) : (

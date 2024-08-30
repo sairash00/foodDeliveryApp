@@ -10,7 +10,6 @@ interface Products{
   images: [string]
 }
 interface Props {
-  key: string;
   product: Products
 }
 

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import ProductCard from './ProductCard';
+import { useState, useEffect, lazy, Suspense } from "react";
+const ProductCard = lazy(() => import("./ProductCard") )
 import Skeleton from '../../DaisyComponents/Skeleton';
 import axios, { AxiosResponse } from 'axios';
 
@@ -64,7 +64,9 @@ const Product = () => {
       ) : products.length > 0 ? (
         <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2">
           {products.map((product) => (
-            <ProductCard key={product._id} product={product} />
+            <Suspense key={product._id} fallback={<Skeleton />}>
+              <ProductCard product={product} />
+            </Suspense>
           ))}
         </div>
       ) : (
