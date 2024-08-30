@@ -1,0 +1,22 @@
+{
+    "name": "Yumm !",
+    "short_name": "Yumm!",
+    "description": "Where Flavour Meets Elegance",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fc4e03",
+    "theme_color": "#fff",
+    "icons": [
+      {
+        "src": "/icons/SmallIcon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/BigIcon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
