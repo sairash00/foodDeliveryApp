@@ -13,7 +13,7 @@ const Dashboard = () => {
 
   return (
     <div className='w-[100vw] min-h-[90vh]'>
-      <Top user={user || { name: 'Guest' }} />
+      <Top user={user || { name: 'Sir/Mam' }} />
       <Outlet />
     </div>
   );

@@ -59,9 +59,9 @@ const Cart: React.FC = () => {
   }
 
   return (
-    <div className='w-[100vw] h-[100vh] relative ' >
+    <div className='w-[100vw] relative ' >
       { show ? <PlaceOrderPage setShow = {placeOrder} /> : null}
-      <div className='w-full gap-10  min-h-[62vh] px-[2rem] pt-10 flex justify-around items-start flex-wrap'>
+      <div className='w-full gap-10 px-[2rem] pt-10 flex justify-around items-start flex-wrap'>
         {loading ? (
           <div className='w-8 h-8 rounded-full self-center border-b-2 border-r-2 border-[#fc4e03] animate-spin'></div>
         ) : err ? (

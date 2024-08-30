@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
 *{
-    font-family: 'quicksand', 'arial';
+  font-family: 'quicksand', 'arial';
 }
 
 html, body{
@@ -12,14 +13,13 @@ html, body{
     overflow-y: auto;
 }
 
-*::-webkit-scrollbar{
+body *::-webkit-scrollbar{
     width:4px;
     background: transparent;
 }
 
-*::-webkit-scrollbar-thumb{
+body *::-webkit-scrollbar-thumb{
     background-color: #FC4E03;
     border-radius: 50px;
-
 }
 

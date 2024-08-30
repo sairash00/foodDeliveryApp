@@ -14,5 +14,16 @@ export default {
       }
     },
   },
-  plugins: [],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {      
+          "base-100": "#ffffff",
+          },
+        },
+      ],
+    },
+  plugins: [
+    require('daisyui'),
+  ],
 }

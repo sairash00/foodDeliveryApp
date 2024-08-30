@@ -26,6 +26,8 @@ interface Order {
   _id: string;
   by: {
     name: string;
+    phoneNumber: number;
+    address: Address
   };
   items: OrderItem[];
   pickUp: boolean;
@@ -74,7 +76,7 @@ const Orders = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center py-10">
+      <div className="flex min-h-[80vh] justify-center items-center py-10">
         <p className="text-lg font-semibold text-gray-500">Loading orders...</p>
       </div>
     );
@@ -82,7 +84,7 @@ const Orders = () => {
 
   if (err) {
     return (
-      <div className="flex justify-center items-center py-10">
+      <div className="flex min-h-[80vh] justify-center items-center py-10">
         <p className="text-lg font-semibold text-red-500">{err}</p>
       </div>
     );
@@ -90,7 +92,7 @@ const Orders = () => {
 
   if (!orders || orders.length === 0) {
     return (
-      <div className="flex justify-center items-center py-10">
+      <div className="flex  min-h-[80vh] justify-center items-center py-10">
         <p className="text-lg font-semibold text-gray-500">No orders found.</p>
       </div>
     );

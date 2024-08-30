@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import ProductCard from './ProductCard'
 import { getProducts } from '../../utils/getProductApi'
+import Skeleton from '../../DaisyComponents/Skeleton'
 
 interface Product{
   _id:string,
@@ -34,17 +35,34 @@ const Drinks = () => {
    }, [])
 
   return (
-     <div className="justify-center min-h-[70vh] py-8 flex gap-6 max-sm:gap-5 w-full flex-wrap">
+    <div className="px-5 min-h-[80vh] max-sm:px-2 py-5">
       {loading ? (
-        <div className="w-10 h-10 self-center animate-spin rounded-full border-b-4 border-r-4 border-[#fc4e03] " ></div>
+        <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2">
+          <Skeleton/>
+          <Skeleton/>
+          <Skeleton/>
+          <Skeleton/>
+        </div>
       ) : error ? (
-        <div className="text-red-500 text-xl self-center ">{error}</div>
+        <div className="flex items-center justify-center min-h-[90vh]">
+          <div className="text-red-500 text-xl">{error}</div>
+        </div>
       ) : products.length > 0 ? (
-        products.map((product) => (
-          <ProductCard key={product._id} id={product._id} name={product.name} price={product.price} images={product.images} />
-        ))
+        <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2">
+          {products.map((product) => (
+            <ProductCard
+              key={product._id}
+              id={product._id}
+              name={product.name}
+              price={product.price}
+              images={product.images}
+            />
+          ))}
+        </div>
       ) : (
-        <div className=" self-center text-2xl font-semibold " >No products available</div>
+        <div className="flex items-center justify-center min-h-[90vh]">
+          <div className="text-2xl font-semibold">No products available</div>
+        </div>
       )}
     </div>
   )

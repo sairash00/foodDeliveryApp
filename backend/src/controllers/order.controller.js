@@ -177,7 +177,7 @@ export const getAll = async (req,res) => {
     try {
         const orders = await Order.find().populate({
             path: "by",
-            select: "name"
+            select: "name phoneNumber address "
         }).populate({
             path: "items.item",
             model: "Product",

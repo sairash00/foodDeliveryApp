@@ -26,6 +26,8 @@ interface Items {
   _id: string;
   by: {
     name: string
+    phoneNumber: number;
+    address: Address
   };
   items: OrderItem[];
   pickUp: boolean;
@@ -62,6 +64,7 @@ const Card = ({details}:Props) => {
     status: ""
   })
   const [orderStatus, setOrderStatus] = useState<string>(details.status);
+
 
   useEffect(() => {
     let total = 0;
@@ -111,6 +114,7 @@ const Card = ({details}:Props) => {
 
         <div className=' w-full flex flex-col gap-1 ' >
             <div className='text-md font-semibold' >By: {details.by.name} </div>
+            <div className='text-md font-semibold' >Number: {details.by.phoneNumber} </div>
             <hr />
             <details className=' mt-1 mb-2 ' >
               <summary className='font-semibold ' >Address</summary>
@@ -119,6 +123,15 @@ const Card = ({details}:Props) => {
                    <li className='text-sm ml-4 tracking-wide font-semibold' >State: Koshi </li>
                    <li className='text-sm ml-4  tracking-wide font-semibold' >Country: Nepal </li>
                  </ul> : "Registered Address" }
+            </details>
+            <hr />
+            <details className=' mt-1 mb-2 ' >
+              <summary className='font-semibold ' >Registered Address</summary>
+                 <ul>
+                   <li className='text-sm ml-4 tracking-wide  font-semibold' >City: {details.by.address.city}</li>
+                   <li className='text-sm ml-4 tracking-wide font-semibold' >State: {details.by.address.state} </li>
+                   <li className='text-sm ml-4  tracking-wide font-semibold' >Country: {details.by.address.country} </li>
+                 </ul>
             </details>
             <hr />
             <details className=' mt-1 mb-2 ' >

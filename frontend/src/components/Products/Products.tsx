@@ -1,7 +1,7 @@
 import ProductCard from "./ProductCard";
 import { useState, useEffect } from 'react';
 import { getProducts } from "../../utils/getProductApi";
-
+import Skeleton from "../../DaisyComponents/Skeleton";
 interface Product {
   _id: string;
   name: string;
@@ -32,8 +32,11 @@ const Products = () => {
   return (
     <div className="px-5 min-h-[80vh] max-sm:px-2 py-5">
       {loading ? (
-        <div className="flex items-center justify-center min-h-[90vh]">
-          <div className="w-10 h-10 animate-spin rounded-full border-b-4 border-r-4 border-[#fc4e03]"></div>
+        <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2">
+          <Skeleton/>
+          <Skeleton/>
+          <Skeleton/>
+          <Skeleton/>
         </div>
       ) : error ? (
         <div className="flex items-center justify-center min-h-[90vh]">
