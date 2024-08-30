@@ -1,9 +1,8 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
+import  streamifier from 'streamifier';
 import { v2 as cloudinary } from "cloudinary";
-import fs from "fs";
-
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -11,25 +10,32 @@ cloudinary.config({
   api_secret: process.env.API_SECRET_CLOUDINARY,
 });
 
-export const uploadOnCloudinary = async (filepath) => {
+export const uploadOnCloudinary = async (fileBuffer) => {
   try {
-    const response = await cloudinary.uploader.upload(filepath, {
-      resource_type: "auto",
+    const stream = streamifier.createReadStream(fileBuffer);
+
+    return new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream({ resource_type: 'auto' }, (error, result) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(result.secure_url); 
+      });
+
+      stream.pipe(uploadStream);
     });
-    fs.unlinkSync(filepath);
-    return response;
   } catch (error) {
-    console.error("Error uploading to Cloudinary:", error);
-    return null;
+    console.error('Error uploading to Cloudinary:', error);
+    return null; 
   }
 };
+
 
 export const removeFromCloudinary = async (url) => {
   try {
     if (url && !Array.isArray(url)) {
       url = [url];
     }
-
     const deletion = url.map((url) => {
       const publicId = url.split("/").slice(-1)[0].split(".")[0];
       return cloudinary.uploader.destroy(publicId);

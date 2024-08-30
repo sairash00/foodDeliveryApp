@@ -1,4 +1,4 @@
-import {uploadOnCloudinary, removeFromCloudinary} from "../utils/cloudinary.js"
+import { uploadOnCloudinary, removeFromCloudinary} from "../utils/cloudinary.js"
 import Product from '../models/product.model.js'
 import User from '../models/user.model.js'
 import { isValidObjectId } from "mongoose"
@@ -7,12 +7,14 @@ export const addProduct = async (req, res) => {
     try {
         const data = req.body
         const file = req.file
+
+
         if(!data || data.name === "" || !data.price || data.description === "" || data.category === "" || !file ) return res.status(403).json({
             success: false,
             message: "All fields are required"
         })
         
-        const result = await uploadOnCloudinary(file.path)
+        const result = await uploadOnCloudinary(file.buffer)
 
         if(!result) return res.status(500).json({
             success:false,
@@ -29,14 +31,14 @@ export const addProduct = async (req, res) => {
         const newProduct = await Product.create(product)
         
         if(!product){
-            await removeFromCloudinary(result.secure_url)
+            await removeFromCloudinary(result)
             return res.status(403).json({
                 success: false,
                 message: "Failed to create product"
             })
         }
 
-        newProduct.images.push(result.secure_url)
+        newProduct.images.push(result)
         newProduct.save()
 
        res.status(200).json({
