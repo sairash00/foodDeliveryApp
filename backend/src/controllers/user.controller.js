@@ -111,9 +111,9 @@ export const logout = async (req, res) => {
     try {
 
         res.status(200)
-        .clearCookie("accessToken",{
+        .cookie("accessToken","",{
             expires: new Date(0),
-            httpOnly: true,
+            httpOnly: true, 
             secure: true,
             sameSite: "None",
 
