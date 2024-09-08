@@ -110,8 +110,9 @@ export const login = async (req,res) => {
 export const logout = async (req, res) => {
     try {
 
-        res.status(200)
+        res.status(200)``
         .clearCookie("accessToken",{
+            expires: new Date(0),
             httpOnly: true,
             secure: true,
             sameSite: "None",
